@@ -3,9 +3,11 @@ class CocktailsController < ApplicationController
 
   def index
     @cocktails = Cocktail.all
+    @count_message = number_cocktails(@cocktails)
   end
 
   def show
+    @cocktail_img = @cocktail.img_url || 'https://source.unsplash.com/random/?cocktail'
   end
 
   def new
@@ -14,9 +16,11 @@ class CocktailsController < ApplicationController
 
   def create
     @cocktail = Cocktail.new(cocktail_params)
-    @cocktail.save
-
-    redirect_to cocktail_path(@cocktail)
+    if @cocktail.save
+      redirect_to new_cocktail_dose_path(@cocktail)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -35,6 +39,18 @@ class CocktailsController < ApplicationController
   end
 
   private
+
+  def number_cocktails(cocktails)
+    if cocktails.count > 1
+      "Enjoy our #{@cocktails.count} cocktails."
+    else
+      "#{@cocktails.count} cocktail."
+    end
+  end
+
+  def cocktail_img
+    @cocktail = Cocktail.find(params[:id])
+  end
 
   def set_cocktail
     @cocktail = Cocktail.find(params[:id])
