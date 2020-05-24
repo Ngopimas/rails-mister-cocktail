@@ -2,7 +2,7 @@ class CocktailsController < ApplicationController
   before_action :set_cocktail, only: [:show, :edit, :update, :destroy]
 
   def index
-    @cocktails = Cocktail.all
+    @cocktails = Cocktail.all.sort_by &:name
     @count_message = number_cocktails(@cocktails)
   end
 
