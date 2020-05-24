@@ -5,5 +5,13 @@
       <%= render "form", cocktail: @cocktail %>
     </div>
   </div>
+    <div class="text-right m-3">
+    <%= link_to cocktail_path(@cocktail),
+                            method: :delete,
+                            data: { confirm: "Are you sure to delete this cocktail?" } do %>
+
+        <div><i class="fas fa-trash"></i></div>
+      <% end %>
+    </div>
 </div>
 </div>

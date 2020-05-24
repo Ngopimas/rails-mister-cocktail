@@ -6,13 +6,31 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'open-uri'
+require "nokogiri"
 
-ingredients_list = JSON.parse(open('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list').read)
+# puts "let's seed the ingredients..."
 
-puts "let's seed the ingredients..."
+# Ingredient.delete_all
 
-ingredients_list["drinks"].each do |element|
-  Ingredient.create!(name: element["strIngredient1"])
+# ingredients_list = JSON.parse(open('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list').read)
+
+# ingredients_list['drinks'].each do |element|
+#   Ingredient.create!(name: element['strIngredient1'])
+# end
+
+puts "let's seed the cocktails..."
+
+cocktail_title = Nokogiri::HTML(open('https://imgur.com/gallery/O5nh9').read)
+cocktails_array = []
+cocktail_title.search('.post-image-title').each do |element|
+  cocktails_array << element.text.strip
+end
+
+Dose.delete_all
+Cocktail.delete_all
+
+cocktails_array.each do |cocktail|
+  puts Cocktail.create!(name: cocktail)
 end
 
 puts 'Done!'

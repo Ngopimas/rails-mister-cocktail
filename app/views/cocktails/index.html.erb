@@ -17,20 +17,21 @@
     </div>
 
 
-
-    <% @cocktails.each do |cocktail| %>
-      <%= link_to cocktail_path(cocktail), class:"text-decoration-none" do %>
-        <div class="card-product">
-          <img src=<%= "#{cocktail.img_url || "https://source.unsplash.com/random/?#{rand(0..10)},cocktail"}" %> />
-          <div class="card-product-infos">
-            <h2><%= cocktail.name %></h2>
-            <p><% cocktail.doses.each do |dose| %>
-                <span class="btn btn-secondary btn-sm"><%= dose.ingredient.name %></span>
-              <% end %>
-            </p>
+<div class="cards">
+      <% @cocktails.each do |cocktail| %>
+        <%= link_to cocktail_path(cocktail), class:"text-decoration-none" do %>
+          <div class="card-product">
+            <img src=<%= "#{cocktail.img_url || "https://source.unsplash.com/random/?#{rand(0..10)},cocktail"}" %> />
+            <div class="card-product-infos">
+              <h2><%= cocktail.name %></h2>
+              <p><% cocktail.doses.take(3).each do |dose| %>
+                  <span class="card-ingredient"><%= dose.ingredient.name %></span>
+                <% end %>
+              </p>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>

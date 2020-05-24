@@ -1,19 +1,22 @@
 <%= simple_form_for @cocktail do |f| %>
   <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :img_url %>
+  <%= f.input :img_url, label: 'Image URL' %>
+  <%= f.input :description, label: 'Method' %>
   <% if @cocktail.valid? %>
     <p>Ingredients :</p>
       <% @cocktail.doses.each do |dose| %>
         <p class="d-flex justify-content-between">
           <span><%= dose.ingredient.name %>: <%= dose.description %> </span>
-          <span><%= link_to '🗑️', cocktail_dose_path(@cocktail),
+          <span><%= link_to cocktail_dose_path(@cocktail, dose),
                                   method: :delete,
-                                  data: { confirm: "Are you sure?" } %></span>
+                                  data: { confirm: "Remove #{dose.ingredient.name} from this recipe?" } do %>
+
+            <i class="fas fa-trash"></i>
+          <% end %></span>
         </p>
       <% end %>
       <%= link_to 'Add Ingredient', new_cocktail_dose_path(@cocktail), class: "btn btn-secondary btn-sm" %>
   <% end %>
   <div class="my-3"></div>
-  <%= f.button :submit, class: "btn btn-primary btn-lg" %>
+  <%= f.button :submit, 'Add Cocktail',  class: "btn btn-primary btn-lg" %>
 <% end %>
