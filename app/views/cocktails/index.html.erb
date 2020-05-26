@@ -23,7 +23,11 @@
       <% @cocktails.each do |cocktail| %>
         <%= link_to cocktail_path(cocktail), class:"text-decoration-none" do %>
           <div class="card-product">
-            <img src=<%= "#{cocktail.img_url || "https://source.unsplash.com/random/?#{rand(0..10)},cocktail"}" %> />
+            <% if cocktail.photo.attached? %>
+              <%= cl_image_tag cocktail.photo.key, crop: :fill %>
+            <% else %>
+              <img src=<%= "#{cocktail.img_url || "https://source.unsplash.com/random/?#{rand(0..10)},cocktail"}" %> />
+            <% end %>
             <div class="card-product-infos">
               <h2><%= cocktail.name %></h2>
               <p class=""><% cocktail.doses.take(3).each do |dose| %>

@@ -1,6 +1,7 @@
 <%= simple_form_for @cocktail do |f| %>
   <%= f.input :name %>
   <%= f.input :img_url, label: 'Image URL' %>
+  <%= f.input :photo, as: :file, label: 'Or Upload Picture' %></p>
   <%= f.input :description, label: 'Method' %>
   <% if @cocktail.valid? %>
     <p>Ingredients :</p>
