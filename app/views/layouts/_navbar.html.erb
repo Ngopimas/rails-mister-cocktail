@@ -5,7 +5,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="ml-auto d-flex">
-      <%= form_tag cocktails_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
+      <%= form_tag root_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
         <%= text_field_tag :query,
           params[:query],
           class: "form-control mr-sm-2",
