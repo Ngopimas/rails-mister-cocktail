@@ -19,7 +19,12 @@ require("channels")
 import 'bootstrap';
 
 import { initUpdateNavbarOnScroll } from '../components/navbar';
+import { loadDynamicBannerText } from '../components/banner';
 
 document.addEventListener('turbolinks:load', () => {
   initUpdateNavbarOnScroll();
+});
+
+document.addEventListener('turbolinks:load', () => {
+  loadDynamicBannerText();
 });
