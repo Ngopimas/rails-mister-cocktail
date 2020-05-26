@@ -2,6 +2,9 @@
   <%= f.input :name %>
   <%= f.input :img_url, label: 'Image URL' %>
   <%= f.input :photo, as: :file, label: 'Or Upload Picture' %></p>
+  <% if @cocktail.photo.attached? %>
+    <%= cl_image_tag @cocktail.photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
   <%= f.input :description, label: 'Method' %>
   <% if @cocktail.valid? %>
     <p>Ingredients :</p>
