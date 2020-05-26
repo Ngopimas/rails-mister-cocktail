@@ -1,6 +1,6 @@
 <%= simple_form_for [@cocktail, @dose], remote: true do |f| %>
   <%= f.input :description, label: 'Quantity for a glass', placeholder: '2cl' %>
-  <%= f.association :ingredient, collection: Ingredient.all %>
+  <%= f.association :ingredient, collection: Ingredient.all.order(:name) %>
 
   <%= f.button :submit, class:"btn btn-primary" %>
 <% end %>

@@ -9,7 +9,7 @@
         <% end %>
       </div>
       <div class="cocktail-show-card">
-        <div class="img-cocktail" style="background-image: url(<%= "'#{@cocktail_img}'" %>)"></div>
+        <div class="img-cocktail mb-3" style="background-image: url(<%= "'#{@cocktail_img}'" %>)"></div>
         <h3>A bit more about this cocktail...</h3>
         <p><%= @cocktail.description %></p>
       </div>
@@ -36,6 +36,11 @@
         <% end %>
 
       </div>
+
+      <div class="cocktail-show-card bg-dark text-white">
+        <p class="d-flex justify-content-between px-3 mb-0"><small><strong>1 oz = 30ml</strong></small> <i class="fas fa-glass-cheers"></i> <small><strong>1 tsp = 5ml</strong></small></p>
+      </div>
+
     </div>
   </div>
 </div>
